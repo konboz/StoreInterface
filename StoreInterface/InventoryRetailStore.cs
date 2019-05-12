@@ -4,25 +4,26 @@ using System.Text;
 
 namespace StoreInterface
 {
-    class InventoryRetailStore : IStore
+    public class InventoryRetailStore : IStore
     {
         List<Product> products;
 
         double revenue=0;
-        double expenses = 0;
-        double income = 0;
-
-        public List<Product> GetInventory()
+    
+        public void GetInventory()
         {
-            return products;
-        }
-
-        public InventoryRetailStore(List<Product> products)
-        {
-            this.products = new List<Product>();
+            foreach (Product t in products)
+            {
+                Console.WriteLine(t.Name);
+            }
         }
 
         public void Reset()
+        {
+            products = new List<Product>();
+        }
+
+        public InventoryRetailStore()
         {
             products = new List<Product>();
         }
@@ -37,12 +38,14 @@ namespace StoreInterface
         public void Sell(Product product)
         {
             products.Remove(product);
-            revenue += product.PriceWhenSell
+            revenue += product.PriceWhenSell;
         }
 
         public double GetRevenue()
         {
-            throw new NotImplementedException();
+            return revenue;
         }
+        
+
     }
 }

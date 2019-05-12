@@ -4,15 +4,35 @@ using System.Text;
 
 namespace StoreInterface
 {
-    class SimpleRetailStore
+    public class SimpleRetailStore : IStore
     {
         public double TotalBuyBalance { get; set; }
         public double TotalSellBalance { get; set; }
 
-        public SimpleRetailStore(double totalBuyBalance, double totalSellBalance)
+        public SimpleRetailStore()
         {
-            TotalBuyBalance = totalBuyBalance;
-            TotalSellBalance = totalSellBalance;
+            
+        }
+        //public SimpleRetailStore(double totalBuyBalance, double totalSellBalance)
+        //{
+        //    TotalBuyBalance = totalBuyBalance;
+        //    TotalSellBalance = totalSellBalance;
+        //}
+
+        public void Buy(Product product)
+        {
+            TotalBuyBalance+=product.PriceWhenBuy;
+        }
+
+        public void Sell(Product product)
+        {
+            TotalSellBalance += product.PriceWhenSell;
+        }
+
+        public double GetRevenue()
+        {
+            double revenue = TotalSellBalance - TotalBuyBalance;
+            return revenue;
         }
     }
 }
