@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace StoreInterface
 {
@@ -13,12 +11,7 @@ namespace StoreInterface
         {
             
         }
-        //public SimpleRetailStore(double totalBuyBalance, double totalSellBalance)
-        //{
-        //    TotalBuyBalance = totalBuyBalance;
-        //    TotalSellBalance = totalSellBalance;
-        //}
-
+        
         public void Buy(Product product)
         {
             TotalBuyBalance+=product.PriceWhenBuy;
@@ -31,6 +24,7 @@ namespace StoreInterface
 
         public double GetRevenue()
         {
+            Console.Write("Simple store revenue: "); //optional
             double revenue = TotalSellBalance - TotalBuyBalance;
             return revenue;
         }

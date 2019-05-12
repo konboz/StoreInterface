@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace StoreInterface
 {
@@ -8,13 +7,14 @@ namespace StoreInterface
     {
         List<Product> products;
 
-        double revenue=0;
-    
+        double revenue = 0;
+
         public void GetInventory()
         {
+            Console.WriteLine("Store Inventory:");
             foreach (Product t in products)
             {
-                Console.WriteLine(t.Name);
+                Console.WriteLine($"Product name: {t.Name}, id: {t.Id}");
             }
         }
 
@@ -32,20 +32,28 @@ namespace StoreInterface
         {
             products.Add(product);
             revenue -= product.PriceWhenBuy;
-            
+
         }
 
         public void Sell(Product product)
         {
-            products.Remove(product);
-            revenue += product.PriceWhenSell;
+            if(products.Remove(product)) //Check for stock availability in inventory
+            {
+                revenue += product.PriceWhenSell;
+            }
+            else
+            {
+                Console.WriteLine("No stock");
+            }
+            
         }
 
         public double GetRevenue()
         {
+            Console.Write("Inventory store revenue: "); //optional
             return revenue;
         }
-        
+
 
     }
 }
